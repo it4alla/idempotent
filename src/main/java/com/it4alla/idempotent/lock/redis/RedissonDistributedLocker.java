@@ -1,4 +1,4 @@
-package com.it4alla.idempotent.lock.redission;
+package com.it4alla.idempotent.lock.redis;
 
 import java.util.concurrent.TimeUnit;
 import org.redisson.Redisson;

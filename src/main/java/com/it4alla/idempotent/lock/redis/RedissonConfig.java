@@ -1,4 +1,4 @@
-package com.it4alla.idempotent.lock.redission;
+package com.it4alla.idempotent.lock.redis;
 
 import org.redisson.Redisson;
 import org.redisson.config.Config;
