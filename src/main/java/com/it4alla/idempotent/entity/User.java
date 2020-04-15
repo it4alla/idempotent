@@ -3,9 +3,12 @@ package com.it4alla.idempotent.entity;
 import java.math.BigDecimal;
 
 /**
+ * @description: the user
+ *
  * @author ITyunqing
- * @email 1186355422@qq.com
+ * @since 1.0.0
  */
+@Deprecated
 public class User {
 
     private String id;

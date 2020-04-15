@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author IT云清
+ * @description: 启动类
+ *
+ * @author ITyunqing
+ * @since 1.0.0
  */
 @SpringBootApplication
 public class IdempotentApplication {

@@ -5,8 +5,8 @@ import com.it4alla.idempotent.entity.User;
 
 /**
  * @author ITyunqing
- * @email 1186355422@qq.com
  */
+@Deprecated
 public interface UserService {
 
     void add(User user);

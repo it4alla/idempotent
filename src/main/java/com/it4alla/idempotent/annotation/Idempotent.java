@@ -8,11 +8,14 @@ import java.lang.annotation.Target;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * @description: Idempotent annotation
+ *
  * @author ITyunqing
- * @email 1186355422@qq.com
+ * @since 1.0.0
+ *
  * you can use it on your interface in controller like this :
  *     @Idempotent(idempotent = true,expireTime = 6,timeUnit = TimeUnit.SECONDS,info = "请勿重复添加用户")
- *     @GetMapping(value = "add")
+ *     @PutMapping(value = "add")
  *     public String add(User user){
  *          userServiceImpl.add(user);
  *         return "success";
