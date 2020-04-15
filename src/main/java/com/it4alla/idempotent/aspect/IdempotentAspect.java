@@ -1,7 +1,7 @@
 package com.it4alla.idempotent.aspect;
 
-import com.java4all.annotation.Idempotent;
-import com.java4all.exception.IdempotentException;
+import com.it4alla.idempotent.annotation.Idempotent;
+import com.it4alla.idempotent.exception.IdempotentException;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -44,7 +44,7 @@ public class IdempotentAspect {
     private Redisson redisson;
 
 
-    @Pointcut("@annotation(com.java4all.annotation.Idempotent)")
+    @Pointcut("@annotation(com.it4alla.idempotent.annotation.Idempotent)")
     public void pointCut(){}
 
     @Before("pointCut()")

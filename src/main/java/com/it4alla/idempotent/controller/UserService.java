@@ -1,6 +1,7 @@
 package com.it4alla.idempotent.controller;
 
-import com.java4all.entity.User;
+
+import com.it4alla.idempotent.entity.User;
 
 /**
  * @author ITyunqing
