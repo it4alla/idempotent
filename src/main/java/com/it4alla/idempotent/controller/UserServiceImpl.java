@@ -1,6 +1,6 @@
 package com.it4alla.idempotent.controller;
 
-import com.java4all.entity.User;
+import com.it4alla.idempotent.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
