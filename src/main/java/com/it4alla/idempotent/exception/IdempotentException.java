@@ -1,10 +1,11 @@
 package com.it4alla.idempotent.exception;
 
 /**
- * Idempotent Exception
+ * @description: Idempotent Exception
  * If there is a custom global exception, you need to inherit the custom global exception.
+ *
  * @author ITyunqing
- * @email 1186355422@qq.com
+ * @since 1.0.0
  */
 public class IdempotentException extends Exception{
 

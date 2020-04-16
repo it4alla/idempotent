@@ -1,4 +1,4 @@
-package com.it4alla.idempotent.redission;
+package com.it4alla.idempotent.lock.redis;
 
 import org.redisson.Redisson;
 import org.redisson.config.Config;
@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 /**
  * @description: Redisson配置类
- * @author: yufangze
+ *
+ * @author ITyunqing
+ * @since 1.0.0
  */
 @Configuration
 public class RedissonConfig {

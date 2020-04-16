@@ -26,9 +26,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * The Idempotent Aspect
+ * @description: The Idempotent Aspect
+ *
  * @author ITyunqing
- * @email 1186355422@qq.com
+ * @since 1.0.0
  */
 @Aspect
 @Component

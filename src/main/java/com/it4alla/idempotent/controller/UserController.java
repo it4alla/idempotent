@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author ITyunqing
- * @email 1186355422@qq.com
  */
+@Deprecated
 @RestController
 @RequestMapping("user")
 public class UserController {

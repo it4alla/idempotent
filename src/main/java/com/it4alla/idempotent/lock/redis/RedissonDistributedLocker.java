@@ -1,4 +1,4 @@
-package com.it4alla.idempotent.redission;
+package com.it4alla.idempotent.lock.redis;
 
 import java.util.concurrent.TimeUnit;
 import org.redisson.Redisson;
@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * redisson分布式锁
+ * @description: Redisson分布式锁
+ *
  * @author ITyunqing
- * @date 2019年04月02日 10:00:54
+ * @since 1.0.0
  */
 @Component
 public class RedissonDistributedLocker {

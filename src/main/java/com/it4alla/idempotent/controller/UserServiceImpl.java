@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author ITyunqing
- * @email 1186355422@qq.com
  */
+@Deprecated
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService{
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
