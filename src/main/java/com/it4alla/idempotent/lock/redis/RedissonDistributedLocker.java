@@ -1,5 +1,6 @@
 package com.it4alla.idempotent.lock.redis;
 
+import com.it4alla.idempotent.lock.core.LockerService;
 import java.util.concurrent.TimeUnit;
 import org.redisson.Redisson;
 import org.redisson.RedissonMultiLock;
@@ -16,8 +17,21 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  */
 @Component
-public class RedissonDistributedLocker {
+public class RedissonDistributedLocker implements LockerService {
     private static final Logger logger = LoggerFactory.getLogger(RedissonDistributedLocker.class);
+
+    private static volatile RedissonDistributedLocker instance;
+
+    static RedissonDistributedLocker getInstance(){
+        if (null == instance) {
+            synchronized (RedissonDistributedLocker.class) {
+                if (null == instance) {
+                    instance = new RedissonDistributedLocker();
+                }
+            }
+        }
+        return instance;
+    }
 
     @Autowired
     private Redisson redisson;
@@ -27,6 +41,7 @@ public class RedissonDistributedLocker {
      * @param lockKey
      * @return
      */
+    @Override
     public RLock lock(String lockKey){
         RLock lock = redisson.getLock(lockKey);
         lock.lock();
@@ -41,6 +56,7 @@ public class RedissonDistributedLocker {
      * @param timeUnit 时间单位
      * @return
      */
+    @Override
     public RLock lock(String lockKey,Integer expireTime,TimeUnit timeUnit){
         RLock lock = redisson.getLock(lockKey);
         lock.lock(expireTime, timeUnit);
@@ -55,6 +71,7 @@ public class RedissonDistributedLocker {
      * @param timeUnit 时间单位
      * @return
      */
+    @Override
     public RLock fairLock(String lockKey,Integer expireTime,TimeUnit timeUnit){
         RLock fairLock = redisson.getFairLock(lockKey);
         fairLock.lock(expireTime, timeUnit);
@@ -70,7 +87,8 @@ public class RedissonDistributedLocker {
      * @param waitTime 加锁等待
      * @return
      */
-    public boolean tryLock(String lockKey, Integer expireTime,TimeUnit timeUnit,Integer waitTime) {
+    @Override
+    public Boolean tryLock(String lockKey, Integer expireTime,TimeUnit timeUnit,Integer waitTime) {
         RLock lock = redisson.getLock(lockKey);
         try {
             logger.info("【Redisson lock】success to acquire lock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
@@ -87,6 +105,7 @@ public class RedissonDistributedLocker {
      * @param lockKey 时间单位
      * @return
      */
+    @Override
     public RedissonMultiLock multiLock(Integer expireTime,TimeUnit timeUnit,String ...lockKey){
         RLock [] rLocks = new RLock[lockKey.length];
         for(int i = 0,length = lockKey.length; i < length ;i ++){
@@ -103,6 +122,7 @@ public class RedissonDistributedLocker {
      * 释放锁
      * @param lockKey
      */
+    @Override
     public void unLock(String lockKey){
         RLock lock = redisson.getLock(lockKey);
         lock.unlock();
@@ -111,18 +131,22 @@ public class RedissonDistributedLocker {
 
     /**
      * 释放锁
-     * @param rLock
+     * @param lock
      */
-    public void unLock(RLock rLock) {
+    @Override
+    public void unLock(Object lock) {
+        RLock rLock = (RLock) lock;
         rLock.unlock();
         logger.info("【Redisson lock】success to release lock for [ "+rLock.getName()+" ]");
     }
 
     /**
      * 释放联锁
-     * @param multiLock
+     * @param lock
      */
-    public void unLockMultiLock(RedissonMultiLock multiLock) {
+    @Override
+    public void unLockMultiLock(Object lock) {
+        RedissonMultiLock multiLock = (RedissonMultiLock) lock;
         multiLock.unlock();
         logger.info("【Redisson lock】success to release lock");
     }
