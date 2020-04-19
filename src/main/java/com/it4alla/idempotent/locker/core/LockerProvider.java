@@ -1,4 +1,4 @@
-package com.it4alla.idempotent.lock.core;
+package com.it4alla.idempotent.locker.core;
 
 /**
  * @description: LockerProvider

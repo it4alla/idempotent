@@ -1,7 +1,7 @@
-package com.it4alla.idempotent.lock.redis;
+package com.it4alla.idempotent.locker.redis;
 
-import com.it4alla.idempotent.lock.core.LockerProvider;
-import com.it4alla.idempotent.lock.core.LockerService;
+import com.it4alla.idempotent.locker.core.LockerProvider;
+import com.it4alla.idempotent.locker.core.LockerService;
 
 /**
  * @description: RedissonLockerProvider
