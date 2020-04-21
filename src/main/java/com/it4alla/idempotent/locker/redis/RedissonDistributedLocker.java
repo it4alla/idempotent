@@ -45,7 +45,7 @@ public class RedissonDistributedLocker implements LockerService {
     public RLock lock(String lockKey){
         RLock lock = redisson.getLock(lockKey);
         lock.lock();
-        logger.info("【Redisson locker】success to acquire locker for [ "+lockKey+" ]");
+        logger.info("【Redisson lock】success to acquire lock for [ "+lockKey+" ]");
         return lock;
     }
 
@@ -60,7 +60,7 @@ public class RedissonDistributedLocker implements LockerService {
     public RLock lock(String lockKey,Integer expireTime,TimeUnit timeUnit){
         RLock lock = redisson.getLock(lockKey);
         lock.lock(expireTime, timeUnit);
-        logger.info("【Redisson locker】success to acquire locker for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
+        logger.info("【Redisson lock】success to acquire lock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
         return lock;
     }
 
@@ -75,7 +75,7 @@ public class RedissonDistributedLocker implements LockerService {
     public RLock fairLock(String lockKey,Integer expireTime,TimeUnit timeUnit){
         RLock fairLock = redisson.getFairLock(lockKey);
         fairLock.lock(expireTime, timeUnit);
-        logger.info("【Redisson locker】success to acquire fair locker for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
+        logger.info("【Redisson lock】success to acquire fair lock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
         return fairLock;
     }
 
@@ -91,7 +91,7 @@ public class RedissonDistributedLocker implements LockerService {
     public Boolean tryLock(String lockKey, Integer expireTime,TimeUnit timeUnit,Integer waitTime) {
         RLock lock = redisson.getLock(lockKey);
         try {
-            logger.info("【Redisson locker】success to acquire locker for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
+            logger.info("【Redisson lock】success to acquire lock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
             return lock.tryLock(waitTime, expireTime, timeUnit);
         } catch (InterruptedException e) {
             return false;
@@ -114,7 +114,7 @@ public class RedissonDistributedLocker implements LockerService {
         }
         RedissonMultiLock multiLock = new RedissonMultiLock(rLocks);
         multiLock.lock(expireTime,timeUnit);
-        logger.info("【Redisson locker】success to acquire multiLock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
+        logger.info("【Redisson lock】success to acquire multiLock for [ "+lockKey+" ],expire time:"+expireTime+timeUnit);
         return multiLock;
     }
 
@@ -126,7 +126,7 @@ public class RedissonDistributedLocker implements LockerService {
     public void unLock(String lockKey){
         RLock lock = redisson.getLock(lockKey);
         lock.unlock();
-        logger.info("【Redisson locker】success to release locker for [ "+lockKey+" ]");
+        logger.info("【Redisson lock】success to release lock for [ "+lockKey+" ]");
     }
 
     /**
@@ -137,7 +137,7 @@ public class RedissonDistributedLocker implements LockerService {
     public void unLock(Object lock) {
         RLock rLock = (RLock) lock;
         rLock.unlock();
-        logger.info("【Redisson locker】success to release locker for [ "+rLock.getName()+" ]");
+        logger.info("【Redisson lock】success to release lock for [ "+rLock.getName()+" ]");
     }
 
     /**
@@ -148,6 +148,6 @@ public class RedissonDistributedLocker implements LockerService {
     public void unLockMultiLock(Object lock) {
         RedissonMultiLock multiLock = (RedissonMultiLock) lock;
         multiLock.unlock();
-        logger.info("【Redisson locker】success to release locker");
+        logger.info("【Redisson lock】success to release lock");
     }
 }
