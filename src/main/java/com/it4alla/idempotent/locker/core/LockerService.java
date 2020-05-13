@@ -1,6 +1,7 @@
 package com.it4alla.idempotent.locker.core;
 
 import java.util.concurrent.TimeUnit;
+import org.apache.zookeeper.KeeperException;
 
 /**
  * @description: Jedis utils
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public interface LockerService<T> {
 
-    Object lock(String lockKey);
+    Object lock(String lockKey) throws KeeperException, InterruptedException;
 
     Object lock(String lockKey,Integer expireTime, TimeUnit timeUnit);
 
